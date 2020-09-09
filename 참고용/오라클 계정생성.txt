@@ -1,0 +1,15 @@
+CREATE USER tongrami identified by tongrami1;
+
+GRANT CONNECT, RESOURCE TO tongrami;
+
+
+-접속-
+
+접속이름 : tongrami
+사용자이름 : tongrami
+비밀번호 : tongrami1
+
+호스트이름 : 172.16.144.33
+포트 : 1521
+
+-테스트 후 성공 시 접속-

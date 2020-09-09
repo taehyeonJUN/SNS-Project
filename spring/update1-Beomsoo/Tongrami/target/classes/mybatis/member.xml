@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="member">
+	
+<!-- sql문의 (select,insert...) id와 dao.impl과 일치 -->
+	
+	<select id="list" resultType="MemberVo">
+	select*FROM MEMBER
+	</select>
+	
+	<select id="listOne" parameterType="string" resultType="MemberVo">
+	SELECT*FROM MEMBER WHERE MEM_ID=#{memId}
+	</select>
+	
+	<insert id="add" parameterType="string">
+	INSERT INTO member (MEM_ID, MEM_NAME, MEM_PASS, MEM_TEL, MEM_THEMA_COLOR, MEM_PHOTOAD,MEM_INTRO,MEM_AUTHOR)
+	values(#{memId),#{memName},#{memPass},#{memTel},#{memThemaColor},#{memPhotoAd},#{memIntro},'USER')
+	</insert>
+	
+	<update id="edit" parameterType="string">
+	UPDATE member set MEM_ID = #{memId}, MEM_NAME = #{memName}, MEM_TEL = #{memTel}, MEM_INTRO = #{memIntro}
+	</update>
+	
+	<delete id="del" parameterType="string">
+	DELETE FROM member WHERE MEM_ID = #{memId}
+	</delete>
+	
+	<select id="login" parameterType="MemberVo" resultType="MemberVo">
+	select*from member
+	where MEM_ID = #{memId} and MEM_PASS = {memPass}
+	</select>
+	
+	
+	
+	</mapper>
