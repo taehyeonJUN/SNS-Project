@@ -1,49 +1,322 @@
-CREATE TABLE TEMPMEMBER(
-  MEM_ID_TEMP VARCHAR2(20) NOT NULL PRIMARY KEY,
-  MEM_PASS_TEMP VARCHAR2(20)NOT NULL,
-  MEM_NAME_TEMP VARCHAR2(20) NOT NULL,
-  MEM_TEL_TEMP  VARCHAR2(50) NOT NULL,
-  MEM_REGDATE_TEMP  date,
-  MEM_AUTHOR_TEMP VARCHAR2(10) DEFAULT 'USER',
-  CONSTRAINT TEMPMEMBER_CH_MEM_AUTHOR_TEMP CHECK (MEM_AUTHOR_TEMP IN('ADMIN','USER')
-));
-
-CREATE TABLE MEMBER(
-  MEM_ID VARCHAR2(20) NOT NULL PRIMARY KEY,
-  MEM_PASS VARCHAR2(20)NOT NULL,
-  MEM_NAME VARCHAR2(20) NOT NULL,
-  MEM_TEL  VARCHAR2(50) NOT NULL,
-  MEM_REG_DATE  date,
-  MEM_AUTHOR VARCHAR2(10) DEFAULT 'USER',
-  MEM_THEME_COLOR VARCHAR2(50),
-  MEM_PHOTO_ADDR VARCHAR2(200), 
-  MEM_INTRO VARCHAR2(200),
-  CONSTRAINT MEMBER_CH_MEM_AUTHOR CHECK (MEM_AUTHOR IN('ADMIN','USER'))
+/* 회원 */
+CREATE TABLE member (
+   MEM_ID VARCHAR2(20) NOT NULL, /* 아이디 */
+   MEM_PASS VARCHAR2(20) NOT NULL, /* 비밀번호 */
+   MEM_NAME VARCHAR2(20) NOT NULL, /* 이름 */
+   MEM_TEL  VARCHAR2(20) NOT NULL, /* 전화번호 */
+   MEM_DATE  DATE NOT NULL, /* 가입일 */
+   MEM_AUTHOR VARCHAR2(20) DEFAULT 'USER', /* 권한 */
+   MEM_INTRO VARCHAR2(200), /* 상태명 */
+   mem_follow INT DEFAULT 0 NOT NULL, /* 팔로우 */
+   mem_follower INT DEFAULT 0 NOT NULL, /* 팔로워 */
+  CONSTRAINT MEM_AUTHOR CHECK (MEM_AUTHOR IN('ADMIN','USER'))
 );
 
+COMMENT ON TABLE member IS '회원';
 
-INSERT INTO member VALUES('admin', '1234', '관리자', '01012341234', SYSDATE, 'ADMIN', NULL, NULL, '관리자입니다.');
-INSERT INTO member VALUES('test', 'test', '테스트01', 'test@test.com', SYSDATE, 'USER', NULL, NULL, 'TEST');
-COMMIT;
+COMMENT ON COLUMN member.MEM_ID IS '아이디';
 
+COMMENT ON COLUMN member.MEM_PASS IS '비밀번호';
 
+COMMENT ON COLUMN member.MEM_NAME IS '이름';
 
-CREATE TABLE FOLLOWER(
-FOLLOWER_NO INT PRIMARY KEY,
-FOLLOWER_ID VARCHAR2(20),
-FOLLOWER_COUNT INT,
-FOREIGN KEY(FOLLOWER_ID) REFERENCES MEMBER(MEM_ID)ON DELETE CASCADE
+COMMENT ON COLUMN member.MEM_TEL  IS '전화번호';
+
+COMMENT ON COLUMN member.MEM_DATE  IS '가입일';
+
+COMMENT ON COLUMN member.MEM_AUTHOR IS '권한';
+
+COMMENT ON COLUMN member.MEM_INTRO IS '상태명';
+
+COMMENT ON COLUMN member.mem_follow IS '팔로우';
+
+COMMENT ON COLUMN member.mem_follower IS '팔로워';
+
+CREATE UNIQUE INDEX PK_member
+   ON member (
+      MEM_ID ASC
+   );
+
+ALTER TABLE member
+   ADD
+      CONSTRAINT PK_member
+      PRIMARY KEY (
+         MEM_ID
+      );
+
+/* 게시글 */
+CREATE TABLE post (
+   POST_NO INT NOT NULL, /* 게시글번호 */
+   POST_ID VARCHAR2(20), /* 작성 */
+   POST_CONTENT CLOB, /* 내용 */
+   POST_LIKE INT, /* 좋아요 */
+   POST_DATE DATE /* 게시일 */
 );
 
-CREATE TABLE FOLLOW(
-FOLLOW_NO INT PRIMARY KEY,
-FOLLOW_I VARCHAR2(20),
-FOLLOW_Y VARCHAR2(20),
-FOREIGN KEY(FOLLOW_I) REFERENCES MEMBER(MEM_ID)ON DELETE CASCADE,
-FOREIGN KEY(FOLLOW_Y) REFERENCES MEMBER(MEM_ID)ON DELETE CASCADE
+COMMENT ON TABLE post IS '게시글';
+
+COMMENT ON COLUMN post.POST_NO IS '게시글번호';
+
+COMMENT ON COLUMN post.POST_ID IS '작성';
+
+COMMENT ON COLUMN post.POST_CONTENT IS '내용';
+
+COMMENT ON COLUMN post.POST_LIKE IS '좋아요';
+
+COMMENT ON COLUMN post.POST_DATE IS '게시일';
+
+CREATE UNIQUE INDEX PK_post
+   ON post (
+      POST_NO ASC
+   );
+
+ALTER TABLE post
+   ADD
+      CONSTRAINT PK_post
+      PRIMARY KEY (
+         POST_NO
+      );
+
+/* 좋아요 */
+CREATE TABLE post_like (
+   LIKE_NO INT NOT NULL, /* 좋아요번호 */
+   LIKE_POST_NO INT, /* 게시글번호 */
+   LIKE_ID VARCHAR2(20) /* 아이디 */
 );
 
-SELECT *
-FROM USER_TABLES;
+COMMENT ON TABLE post_like IS '좋아요';
 
-commit;
+COMMENT ON COLUMN post_like.LIKE_NO IS '좋아요번호';
+
+COMMENT ON COLUMN post_like.LIKE_POST_NO IS '게시글번호';
+
+COMMENT ON COLUMN post_like.LIKE_ID IS '아이디';
+
+CREATE UNIQUE INDEX PK_post_like
+   ON post_like (
+      LIKE_NO ASC
+   );
+
+ALTER TABLE post_like
+   ADD
+      CONSTRAINT PK_post_like
+      PRIMARY KEY (
+         LIKE_NO
+      );
+
+/* 팔로우 */
+CREATE TABLE follow (
+   FOLLOW INT NOT NULL, /* 번호 */
+   FOLLOW_I VARCHAR2(20), /* 신청자 */
+   FOLLOW_Y VARCHAR2(20) /* 대상자 */
+);
+
+COMMENT ON TABLE follow IS '팔로우';
+
+COMMENT ON COLUMN follow.FOLLOW IS '번호';
+
+COMMENT ON COLUMN follow.FOLLOW_I IS '신청자';
+
+COMMENT ON COLUMN follow.FOLLOW_Y IS '대상자';
+
+CREATE UNIQUE INDEX PK_follow
+   ON follow (
+      FOLLOW ASC
+   );
+
+ALTER TABLE follow
+   ADD
+      CONSTRAINT PK_follow
+      PRIMARY KEY (
+         FOLLOW
+      );
+
+/* 팔로워 */
+CREATE TABLE TABLE (
+);
+
+COMMENT ON TABLE TABLE IS '팔로워';
+
+/* 댓글 */
+CREATE TABLE rp (
+   RP_NO INT NOT NULL, /* 댓글번호 */
+   RP_CONTENT CLOB NOT NULL, /* 내용 */
+   RP_DATE DATE NOT NULL, /* 게시일 */
+   RP_POST_NO INT NOT NULL, /* 게시글번호 */
+   RP_ID VARCHAR2(20) NOT NULL /* 작성자 */
+);
+
+COMMENT ON TABLE rp IS '댓글';
+
+COMMENT ON COLUMN rp.RP_NO IS '댓글번호';
+
+COMMENT ON COLUMN rp.RP_CONTENT IS '내용';
+
+COMMENT ON COLUMN rp.RP_DATE IS '게시일';
+
+COMMENT ON COLUMN rp.RP_POST_NO IS '게시글번호';
+
+COMMENT ON COLUMN rp.RP_ID IS '작성자';
+
+CREATE UNIQUE INDEX PK_rp
+   ON rp (
+      RP_NO ASC
+   );
+
+ALTER TABLE rp
+   ADD
+      CONSTRAINT PK_rp
+      PRIMARY KEY (
+         RP_NO
+      );
+
+/* 답글 */
+CREATE TABLE rrp (
+   RRP_NO INT NOT NULL, /* 답글번호 */
+   RRP_ID VARCHAR2(20), /* 작성자 */
+   RRP_RPNO INT, /* 댓글번호 */
+   RRP_CONTENT CLOB, /* 내용 */
+   RRP_DATE DATE /* 답글게시일 */
+);
+
+COMMENT ON TABLE rrp IS '답글';
+
+COMMENT ON COLUMN rrp.RRP_NO IS '답글번호';
+
+COMMENT ON COLUMN rrp.RRP_ID IS '작성자';
+
+COMMENT ON COLUMN rrp.RRP_RPNO IS '댓글번호';
+
+COMMENT ON COLUMN rrp.RRP_CONTENT IS '내용';
+
+COMMENT ON COLUMN rrp.RRP_DATE IS '답글게시일';
+
+CREATE UNIQUE INDEX PK_rrp
+   ON rrp (
+      RRP_NO ASC
+   );
+
+ALTER TABLE rrp
+   ADD
+      CONSTRAINT PK_rrp
+      PRIMARY KEY (
+         RRP_NO
+      );
+
+ALTER TABLE post
+   ADD
+      CONSTRAINT FK_member_TO_post
+      FOREIGN KEY (
+         POST_ID
+      )
+      REFERENCES member (
+         MEM_ID
+      );
+
+ALTER TABLE post_like
+   ADD
+      CONSTRAINT FK_post_TO_post_like
+      FOREIGN KEY (
+         LIKE_POST_NO
+      )
+      REFERENCES post (
+         POST_NO
+      );
+
+ALTER TABLE post_like
+   ADD
+      CONSTRAINT FK_member_TO_post_like
+      FOREIGN KEY (
+         LIKE_ID
+      )
+      REFERENCES member (
+         MEM_ID
+      );
+
+ALTER TABLE follow
+   ADD
+      CONSTRAINT FK_member_TO_follow
+      FOREIGN KEY (
+         FOLLOW_I
+      )
+      REFERENCES member (
+         MEM_ID
+      );
+
+ALTER TABLE follow
+   ADD
+      CONSTRAINT FK_member_TO_follow2
+      FOREIGN KEY (
+         FOLLOW_Y
+      )
+      REFERENCES member (
+         MEM_ID
+      );
+
+ALTER TABLE rp
+   ADD
+      CONSTRAINT FK_post_TO_rp
+      FOREIGN KEY (
+         RP_POST_NO
+      )
+      REFERENCES post (
+         POST_NO
+      );
+
+ALTER TABLE rp
+   ADD
+      CONSTRAINT FK_member_TO_rp
+      FOREIGN KEY (
+         RP_ID
+      )
+      REFERENCES member (
+         MEM_ID
+      );
+
+ALTER TABLE rrp
+   ADD
+      CONSTRAINT FK_member_TO_rrp
+      FOREIGN KEY (
+         RRP_ID
+      )
+      REFERENCES member (
+         MEM_ID
+      );
+
+ALTER TABLE rrp
+   ADD
+      CONSTRAINT FK_rp_TO_rrp
+      FOREIGN KEY (
+         RRP_RPNO
+      )
+      REFERENCES rp (
+         RP_NO
+      );
+    
+    CREATE SEQUENCE SE_POST
+    START WITH 1
+    MAXVALUE 99999
+    MINVALUE 1;
+    
+ 
+ CREATE SEQUENCE SE_LIKE
+    START WITH 1
+    MAXVALUE 99999
+    MINVALUE 1;
+
+    CREATE SEQUENCE SE_RP
+    START WITH 1
+    MAXVALUE 99999
+    MINVALUE 1;
+
+  CREATE SEQUENCE SE_RRP
+    START WITH 1
+    MAXVALUE 99999
+    MINVALUE 1;
+    
+    CREATE SEQUENCE SE_FOLLOW
+    START WITH 1
+    MAXVALUE 99999
+    MINVALUE 1;
+    
+    COMMIT;
