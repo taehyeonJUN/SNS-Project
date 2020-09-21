@@ -1,0 +1,14 @@
+SELECT * FROM POST;
+INSERT INTO post VALUES (SE_POST.NEXTVAL, 'a001','안녕',1,sysdate);
+
+SELECT * FROM member;
+
+INSERT into member values('a001','123','홍길동','010',sysdate,'USER','hello',0,0);
+
+commit;
+
+
+게시글 목록 출력 불가 - 낙타표기법 변환으로 해결 (바티스 컨피그에 삽입)
+<settings>
+      <setting name="mapUnderscoreToCamelCase" value="true" />
+   </settings>
