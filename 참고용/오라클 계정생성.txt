@@ -1,13 +1,13 @@
-CREATE USER tongrami identified by tongrami1;
+CREATE USER sns identified by 123;
 
-GRANT CONNECT, RESOURCE TO tongrami;
+GRANT CONNECT, RESOURCE TO sns;
 
 
 -접속-
 
-접속이름 : tongrami
-사용자이름 : tongrami
-비밀번호 : tongrami1
+접속이름 : sns
+사용자이름 :sns
+비밀번호 : 123
 
 호스트이름 : 172.16.144.33
 포트 : 1521
