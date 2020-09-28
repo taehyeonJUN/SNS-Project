@@ -1,0 +1,25 @@
+파일 업로드시 해야할 것 
+
+pom.xml에 라이브러리 업데이트
+servlet-context - 	<resources mapping="/Photo/**" location="/resources/Photo/" /> 식으로 경로 추가
+			// 파일을 읽어올때의 경로
+
+,rootcontext  -"multipartResolver" 빈 추가
+
+		<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		<!-- 하나의 요청에 포함된 최대 파일 크기 (byte)설정 여기서는 10메가바이트 -->
+		<property name="maxUploadSize" value="10485760"></property>
+		<!-- 복수의 파일 업로드시 단일 파일이 설정할 수 있는 최대크기 -->
+		<!-- <property name="maxUploadSizePerFile"></property> -->
+		<!-- name="uploadTempDir" 임시폴더에 저장 -->
+		</bean>
+
+모델객체와 테이블업뎃
+모델객체에는 파일 원본명을 저장하는 스트링 변수와 파일을 저장하게 하는 멀티파트파일 객체 생성
+
+
+
+-----------작업기록-------------
+사진업로드 가능하나 한번에 하나의 업로드 밖에 하지 못함

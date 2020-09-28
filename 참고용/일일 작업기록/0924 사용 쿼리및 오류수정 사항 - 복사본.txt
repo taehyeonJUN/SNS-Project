@@ -1,0 +1,46 @@
+무한 스크롤
+
+
+
+  add.onclick = function(){
+                const ul = document.querySelector("ul");
+                //태그선택자를 가져옴
+                ul.innerHTML+="<li>등록된 내용이 없습니다.</li>";
+                //innerHTML: ul태그 사이에 태그삽입, 적용가능
+                //내용을 바꿀때 사용
+            };    
+            };  //이런식으로 댓글 추가 
+
+
+
+CREATE TABLE PHOTO(
+  PHO_NO INT PRIMARY KEY,
+  PHO_PHOTO VARCHAR2(255),
+  PHO_POSTNO INT,
+  CONSTRAINT FK_POSTNO FOREIGN KEY(PHO_POSTNO) REFERENCES POST(POST_NO)
+);
+
+    CREATE SEQUENCE SE_PHOTO
+    START WITH 1
+    MINVALUE 1;
+
+//아직은 다중 사진 업로드 힘들어 포스트테이블에 포함
+  ALTER TABLE POST ADD POST_PHOTO VARCHAR2(255);
+  
+
+
+a태그로 새창 열어서 
+거기서 사진 업로드 후 그 정보를 포스트 add에 반영 취소 누를 때 업로드 한 사진번호삭제쿼리 
+넣을 것 --이거 필요없고 img태그로 바로 출력하자
+
+
+
+
+<c:if test="${not empty item.postPhoto}">
+						<tr>
+						<td><img src="../SNS_Photo/${item.postPhoto}" width="300px"></td>
+						</tr>
+						</c:if>
+						<tr>
+
+c:if로 사진없는 포스트는 엑박이 나오지 않게 수정함 
