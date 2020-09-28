@@ -1,0 +1,27 @@
+SELECT * FROM MEMBER;
+
+INSERT into member values('a002','123','김길태','011',sysdate,'USER','hello',0,0);
+SELECT * FROM post;
+INSERT INTO post VALUES (SE_POST.NEXTVAL, 'a002','안녕',1,sysdate);
+
+SELECT * FROM post where POST_ID='a001';
+
+--게시글 조회 (본인과 본인이 팔로우 한 사람)
+SELECT * FROM POST, FOLLOW WHERE POST_ID='a002'
+OR POST_ID=(SELECT FOLLOW_Y FROM FOLLOW where FOLLOW_I='a002')
+ORDER BY POST_DATE desc;;
+
+--팔로우 확인용
+SELECT FOLLOW_I FROM FOLLOW where FOLLOW_I='a001';
+SELECT * FROM FOLLOW;
+
+--팔로우 버튼을 누르는 순간 아래의 쿼리가 같이 실행되어야 함.
+INSERT into FOLLOW values(SE_FOLLOW.nextval,'a002','a001');
+UPDATE MEMBER SET MEM_FOLLOW = MEM_FOLLOW+1 where MEM_ID='a002';
+UPDATE MEMBER SET MEM_FOLLOWER = MEM_FOLLOWER+1 where MEM_ID='a001';
+
+--포스트 삭제
+DELETE FROM POST WHERE POST_NO = #{postNo}
+
+--0922 작성글 조회 및 업로드기능 구현함.
+--삭제기능 구현했으나 필터링 필요함 (본인글 말고 타인글도 삭제 가능한 상태임)
