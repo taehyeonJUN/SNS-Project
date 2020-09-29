@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통그라미 버젼3</title>
+    <link rel="stylesheet" href="../css/글쓰기.css">
+
+    <style>
+        body {
+            background : #f3efef;
+        }
+        #header-nav {
+            background: #fff;
+            line-height: 100px;
+            position: fixed;
+            /* top: 0;
+            left: 0; */
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            z-index: 10;
+        }
+
+        #header-nav .gnb {
+            margin: 0 auto;
+            width: 1200px; /*1000px*/
+            height: 120px;
+            /* float: left; */
+        }
+
+        #header-nav .gnb ul {
+            width: 700px;
+            /* ???? 무슨 변화인지 찾기 */
+            float: right;
+            /* logo 이미지와 nav menu 한 박스로 뭉치기 */
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #header-nav .gnb ul li {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 700; 
+            width: 15%;
+            line-height: 100px;
+            float: right;
+        }
+
+        #header-nav .gnb img {
+            padding-top: 15px;   
+        }
+
+        #mid-section  {
+            margin: 0 auto;
+            width: 1200px; /*1000px*/
+        }
+
+        .bg-container {
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            width: 700px;
+            height: 1500px;
+            margin-top: 150px;
+            display: inline-block;
+            background: #fff;
+        }
+        .bg-container .head-id {
+            position: relative;
+            top: 9px;
+            padding-left: 25px;
+            height: 50px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .bg-img-container {
+            width: 700px;
+            height: 700px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        
+        /* .bg-img-container .img {
+            max-width: 100%;
+        } */
+
+
+        #mid-section .board-navi {
+            padding-left: 25px;
+        }
+
+        #mid-section .board-navi ul li {
+            float: left;
+            
+            margin-right: 10px;
+        }
+
+        #mid-section .board-navi-2 {
+            float: right;
+            padding-right: 25px;
+        }
+        .content-container {
+            margin-top: 50px;
+            border-bottom: 1px solid #ddd;
+            padding-left: 25px;
+            line-height: 40px;
+        }
+
+        .reply-container {
+            text-align: center;  
+            display: inline-block;
+            padding-left: 25px;
+            padding-top: 25px;
+        }
+        .reply-button{
+            float: right;
+            margin-top: 20px;
+            margin-right: 20px;
+            padding: 6px;
+        }
+        
+        /* #side-menu {
+            margin: 0 auto;
+        } */
+
+        .others-container{
+            display: inline-block;
+            position: absolute;
+            margin-left: 95px;
+            margin-top: 150px;
+            /* padding: 0px; */
+            position: fixed;
+            z-index: 10;
+        }
+
+        .today-follow {
+            display: inline-block;
+        }
+        .recommend-container {
+            margin-top: 50px;
+            border: 1px solid #ddd; 
+        }
+        .sitemap-container {
+            margin-top: 50px;
+            border: 1px solid #ddd;
+        }
+        #more {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header id="header-nav">
+        <div class="gnb">
+            <a href="#"><img src="../image/logo_Tongrami.png" style="height: 90px;"></a>
+            
+            <ul>
+                <!-- <li><input class="search" type="text" placeholder="검색"></li> -->
+                <li><a href="#"><img src="../images/iconmonstr-smiley-2-240.png" alt="home" style="width: 32px; margin-top: 20px;"></a></li>
+                <li><a href="#"><img src="../images/iconmonstr-thumb-2-240.png" alt="like" style="width: 32px; margin-top: 20px;"></a></li>
+                <li><a href="#"><img src="../images/iconmonstr-email-4-240.png" alt="message" style="width: 32px; margin-top: 20px;"></a></li>
+                <li><a href="#"><img src="../images/iconmonstr-home-9-240.png" alt="home" style="width: 32px; margin-top: 20px;"></li>
+            </ul>
+        </div>
+    </header>
+    <!-- header end -->
+
+    <section id="mid-section">
+        <div class="bg-container">
+        <!-- <a href="#"><img src="#" class="bg-pf-container">ㅇ</a> -->
+        <h2 class="head-id"><a href="#">upload's</a></h2>
+
+        <div class="bg-img-container">
+            <img src="../images/jeju.jpg" style="width: 650px; height: 650px;">
+        </div>
+
+        <div class="board-navi">
+            <ul>
+                <li><a href="#"><img src="../images/iconmonstr-favorite-1-240.png" alt="like" style="width: 32px;"  id="heart" onclick="heartimg()"></a></li>
+                <li><a href="#"><img src="../images/iconmonstr-speech-bubble-12-240.png" alt="댓글" style="width: 32px;"></a></li>
+                <li><a href="#"><img src="../images/iconmonstr-paper-plane-1-240.png" alt="댓글" style="width: 32px;"></a></li>
+            </ul>
+        </div>
+        <div class="board-navi-2">
+            <a href="#"><img src="../images/iconmonstr-tree-2-240.png" alt="저장" style="width: 32px;"></a>
+        </div>
+    
+        <!-- <div class="board-like">
+            <span>좋아요 ㅁㅁ개</span>
+        </div>
+        <br> -->
+        <div class="content-container">
+            <h3>좋아요</h3>
+            <h3>id</h3>
+            <h3>글쓰기</h3>
+            <br>
+        </div>
+    
+        <!-- <hr> -->
+
+        <div class="reply-container">
+            <!-- <p class="reply-id">아이디</p>
+            <p class="reply-re">댓글</p><input class="reply-button" type="button" value="게시"> -->
+            <div class="int-area">
+                <input type="text" name="id" id="id" autocomplete="off" required>
+                <label for="id">댓글 쓰기</label><input class="reply-button" type="button" value="게시">
+                
+            </div>
+        </div>
+        </div>
+    <!-- mid-section end -->
+
+        <div class="others-container">
+            <div class="my-container">
+                내프로필 아이콘ㅁ
+            </div>
+            <div class="recommend-container">
+                <h3><p class="today-follow">오늘의 팔로우</p><a href="#" class="today-follow" id="more"><p>모두 보기</p></a></h3>
+            <br>
+                <p>친구1</p>
+                <p>친구2</p>
+                <p>친구3</p>
+                <p>친구4</p>
+                <p>친구5</p>
+            </div>
+            <div class="sitemap-container">
+                <a href="#"><p>소개</p></a><a href="#"><p>도움말</p></a><a href="#"><p>인기계정</p></a>
+            <br>
+                <p>COPYRIGHT 어쩌고</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function heartimg() {
+        document.getElementById("heart").src="../images/iconmonstr-favorite-2-240.png";
+        
+        
+    }
+    </script>
+</body>
+</html>
