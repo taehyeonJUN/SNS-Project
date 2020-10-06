@@ -1,0 +1,8 @@
+
+게시글 조회 수정
+
+
+SELECT * FROM POST WHERE POST_ID='admin'
+	OR POST_ID=(SELECT FOLLOW_Y FROM FOLLOW where FOLLOW_I='admin')
+	ORDER BY POST_DATE DESC;
+  
