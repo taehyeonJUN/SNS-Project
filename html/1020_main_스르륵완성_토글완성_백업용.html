@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- main css -->
+    <!-- <link rel="stylesheet" href="../../css/main/1020_main.css"> -->
+    <!-- 댓글 css & 댓글 부트스트랩-->
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/main/1020_reple.css"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Main 스르륵 css -->
+    <link rel="stylesheet" href="../../css/main/1021_main_main스르륵_연습중.css">
+    
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- 토글 스르륵 jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>메인페이지 헤더 토글 완성!! 수정하기 삭제하기 만들기 토글 완성!!</title>
+</head>
+<body>
+    <div class="header-contanier">
+        <div class="header-wrap">
+            <header class="head">
+                <div class="logo"><a href="#"><img src="../../images/Tongrami LOGO.png" alt="통그라미로고"> Tongrami</a></div>
+                
+                <input type="text" value="ddfdf">
+                
+                <!-- 햄버거 시작 -->
+                <div class="menuicon-contaniner">
+                    <input type="checkbox" id="menuicon">
+                    <label for="menuicon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="sidebar">
+                        <div class="menu-1">
+                            <ul>
+                                <a href="#"><li>홈</li></a>
+                                <a href="#"><li>좋아요</li></a>
+                                <a href="#"><li>내 정보 보기</li></a>
+                                <a href="#"><li>게시글 올리기</li></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 햄버거 끝 -->
+            </header>
+        </div>
+    </div>
+    <div class="mid-contaniner">
+        <div class="mid-wrap">
+            <div class="mid-head">
+                <ul>
+                    <li><a href="내정보보기랑연결하기" class="icon"><img src="../../images/iconmonstr-smiley-12-240.png" alt=""></a></li>
+                    <li><a href="내정보보기랑연결하기"><h3>ID_TONGRAMI</h3></a></li>
+                    <li><a href="#" class="setting-btn"><img src="../../images/iconmonstr-menu-dot-horizontal-thin-240.png" alt=""></a></li>                
+                </ul>
+                <!-- 토글 속의 메뉴 -->
+                <div class="delete-btn">
+                    <a href="#">수정하기</a><br>
+                    <a href="#">삭제하기</a>
+                </div>
+            </div>
+            <div class="mid-bg">
+                <div class="photo-area">
+                    <img src="../../images/jeju_1.jpg" alt="메인이미지">
+                </div>
+                <div class="btn-area">
+                    <ul>
+                        <li><a href="#"><img src="../../images/iconmonstr-favorite-1-240.png" alt=""></a></li>
+                        <li><a href="#"><img src="../../images/iconmonstr-speech-bubble-12-240.png" alt=""></a></li>
+                        <li><a href="#"><img src="../../images/iconmonstr-smiley-12-240.png" alt=""></a></li>
+                        <li><a href="#"><img src="../../images/iconmonstr-tree-2-240.png" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="re-container">
+                <ul>
+                    <li>좋아요</li>
+                    <li>아이디</li>
+                    <li>글쓰기</li>
+                    <li>댓글</li>
+                </ul>
+            </div>
+            <div id="form-commentInfo"> 
+                <div id="comment-count">댓글 <span id="count">0</span></div> 
+                <input id="comment-input" placeholder="댓글을 입력해 주세요."> 
+                <button id="submit">등록</button> 
+            </div>
+        </div>
+    </div>
+    
+    <!-- main 자바스크립트 -->
+    <script src="../../js/main/1020_main.js"></script>
+    <script src="../../js/main/1020_reple.js"></script>
+    <script src="../../js/main/1021_main_스르륵_연습중.js"></script>
+</body>
+</html>
