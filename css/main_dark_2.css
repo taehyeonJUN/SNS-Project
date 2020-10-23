@@ -33,6 +33,9 @@ body.dark .delete-btn a:hover {
 body.dark #submit {
     color: #000000;
 }
+
+body.dark #form-commentInfo input {color: #fff;}
+
 .checkbox {
     opacity: 0;
     position: absolute;

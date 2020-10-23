@@ -23,18 +23,27 @@ li {list-style: none;}
                 border-bottom: none; z-index: 10; position: relative; top: 15px;}
 .head {display: flex; justify-content: space-between; align-items: center;}
 .logo {padding-top: 10px; font-family: 'Lobster', cursive; font-size: 30px;} 
-.logo img{width: 30px;}
+.logo img{width: 30px; padding-top: 11px; cursor: pointer;}
+.logo-font {padding-top: 10px; font-family: 'Lobster', cursive; font-size: 30px; cursor: pointer;}
 .menu-btn a {position: absolute; top: 10px; right: 0px;}
 .menu-btn img {width: 40px;}
 
+/* 검색기능 시작 */
+
+
+.form-group {padding-top: 17px; padding-left: 270px;
+    position: absolute;}
+.form-group button img {width: 12px; height: 12px; padding: 0 10px 0 10px; cursor: pointer;}
+
+
 /* 사이드바 위치 및 속성 */
 .menu-1 {
-    
     font-size: 18px;
     font-weight: 600;
     text-align: center;
     line-height: 70px;
     padding-top: 210px;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .menu-1 ul li  {
@@ -46,17 +55,11 @@ li {list-style: none;}
 }
 
  /* 햄버거 버튼 */
- #menuicon {
-            
-}
-input[id="menuicon"] {
-    display: none;
-    
-}
+input[id="menuicon"] {display: none;}
 /* 햄버거 버튼 위치 */
 input[id="menuicon"] + label {
     display: block;
-    width: 30px; /* 햄버거 가로길이 */
+    width: 40px; /* 햄버거 가로길이 */
     height: 20px; /* 햄버거 세로길이 */
     position: fixed;
     position: absolute; /* 햄버거 head-wrap : relative 이용해서 head-wrap 박스 안에 위치 고정 */
@@ -69,7 +72,6 @@ input[id="menuicon"] + label {
 input[id="menuicon"]:checked + label {
     z-index: 2;
     top: 25px; /* checked 후 햄버거 버튼 위치값 */
-    
 }
 
 input[id="menuicon"] + label span {
@@ -158,6 +160,7 @@ input[id="menuicon"]:checked + label + div {
 .re-container ul li{
     line-height: 37px;
 }
+
 
 
 

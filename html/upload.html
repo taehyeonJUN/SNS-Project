@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../../css/main/1021_main_main스르륵_연습중.css"> -->
+    <!-- Main 기본 헤더 ~ 미드(좋아요, 아이디 등 까지) css -->
+    <link rel="stylesheet" href="../../css/main/main_default.css">
+    <!-- 라이트 다크 css -->
+    <link rel="stylesheet" href="../../css/main/main_dark_2.css">
+    <!-- upload 화면 css -->
+    <link rel="stylesheet" href="../../css/upload/upload.css">
+    <!-- 댓글 css -->
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="../../css/main/main_reple_2.css">  -->
+    <!-- logo 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <!-- 나눔고딕 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>게시글 올리기</title>
+</head>
+<body>
+    <div class="header-contanier">
+        <div class="header-wrap">
+            <header class="head">
+                <div class="logo"><a href="#"><img src="../../images/iconmonstr-beer-11-240.png" alt="통그라미로고"> </a></div>
+                <div class="logo-font"> <p>Tongrami</p></div>
+                <!-- 검색기능 시작 -->
+                <div class="form-group">
+                    <form action="newList" method="post">
+                    <input type="text" name="postId"  placeholder="      아이디를 입력하세요.">
+                    <button type="button" value="검색" class="glyphicon glyphicon-search"><img src="../../images/free-icon-search-107122.png" alt="search"></button>
+                </form>
+                </div>
+                <!-- 검색기능 끝 -->
+                <!-- 햄버거 시작 -->
+                <div class="menuicon-contaniner">
+                    <input type="checkbox" id="menuicon">
+                    <label for="menuicon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="sidebar">
+                        <div class="menu-1">
+                            <ul>
+                                <a href="#"><li>HOME</li></a>
+                                <a href="#"><li>LIKE</li></a>
+                                <a href="#"><li>MY INFO</li></a>
+                                <a href="#"><li>UPLOAD</li></a>
+                            </ul>
+                            <div class="checkbox-wrap">
+                                <input type="checkbox" class="checkbox" id="checkbox">
+                                <label for="checkbox" class="label">
+                                    <div class="ball"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 햄버거 끝 -->
+            </header>
+        </div>
+    </div>
+    <!-- 파일업로드박스 시작 -->
+    <div class="mid-contaniner">
+        <div class="mid-wrap">
+            <div class="mid-head">
+                <h3>사진</h3>
+                <div class="upload-box">
+                    <a href="#"><img src="../../images/iconmonstr-picture-thin-240.png" alt="upload">
+                        <a href="">click</a>
+                        <!-- <input type="file" name="file" id="file"><label for="file">click!</label></a> -->
+                        <!-- <input type="image" src="../../images/iconmonstr-picture-thin-240.png" alt="제출버튼"> -->
+                </div>
+                <h3>게시글 작성</h3>
+                <div class="text-box">
+                    <textarea name="text" id="text" cols="55" rows="13"></textarea>
+                </div>
+                <div class="mid-btn">
+                    <button class="cancle-btn">취소</button><button class="upload-btn">게시</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-contaniner">
+        <div class="bottom-wrap">
+            <footer class="bottom">
+                <h5>Copyright ⓒ 2020 Tongrami. All rights reserved.</h5>
+            </footer>
+        </div>
+    </div>
+    </footer>
+    <!-- 라이트/다크 js -->
+    <script src="../../js/main/1021_main_lightDarkTheme.js"></script>
+</body>
+</html>
