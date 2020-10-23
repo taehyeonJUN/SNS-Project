@@ -1,0 +1,48 @@
+팔로우 체크 쿼리 수정
+	<select id="follow_check" resultType="int">
+	SELECT count(*) FROM FOLLOW where FOLLOW_I=#{followI} and FOLLOW_Y=#{followY}
+	</select>
+뉴 리스트 쿼리 수정
+
+SELECT * FROM POST WHERE
+	POST_ID like CONCAT (#{postId},'%') AND
+	POST_ID=#{postId}
+	OR POST_ID=(SELECT FOLLOW_Y FROM FOLLOW where FOLLOW_I=#{postId})
+	ORDER BY POST_DATE DESC;
+
+
+	@Override
+	public List<Post> newList(Post id) {
+		
+		List<Post> post=dao.newList(id);
+		
+		for (int i = 0; i < post.size(); i++) {
+		int postNo = post.get(i).getPostNo();
+		List<Photo> photos= photoDao.photoList(postNo);
+		post.get(i).setAttachList(photos);
+	}
+		
+		return post;
+	}
+
+
+댓글 없으면 댓글없다고 뜨고 
+게시글 없으면 게시글 없다고 뜨게 바꿔야 함 
+
+완료 - 포스트 리스트의 리스트와 뉴 리스트 메소드 수정함, 모델, 서비스다 추가됨
+
+
+
+댓글 작성 + 삭제
+
+
+좋아요 여러번 깜빡 가능하게 바꾸기
+
+팔로우 팔로워  숫자 뜨게 하기?
+
+
+
+	  
+
+
+   

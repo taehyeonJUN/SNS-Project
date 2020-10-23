@@ -1,0 +1,34 @@
+--팔로우 확인용
+SELECT FOLLOW_I FROM FOLLOW where FOLLOW_I='a001';
+SELECT * FROM FOLLOW;
+
+--팔로우 버튼을 누르는 순간 아래의 쿼리가 같이 실행되어야 함.
+INSERT into FOLLOW values(SE_FOLLOW.nextval,'a002','a001');
+UPDATE MEMBER SET MEM_FOLLOW = MEM_FOLLOW+1 where MEM_ID='a002';
+UPDATE MEMBER SET MEM_FOLLOWER = MEM_FOLLOWER+1 where MEM_ID='a001';
+
+
+-- 언팔
+delete from FOLLOW  where FOLLOW_I='a001'; and FOLLOW_Y='a001';
+
+
+프로시저안쓰고
+멤버테이블의 팔로우 팔로원 안쓰고 숫자 셀때는 팔로우 테이블 카운트만 하기?(고민 필요)
+
+SELECT count(FOLLOW_Y) FROM FOLLOW where FOLLOW_I='1';
+
+SELECT * FROM follow;
+SELECT FOLLOW_Y FROM FOLLOW where FOLLOW_I='1';
+SELECT * FROM MEMBER;
+
+SELECT * FROM POST WHERE POST_ID='admin'
+	OR POST_ID=(SELECT FOLLOW_Y FROM FOLLOW where FOLLOW_I='admin')
+	ORDER BY POST_DATE DESC;
+  
+  INSERT into FOLLOW values(SE_FOLLOW.nextval,'1','admin');
+  
+  SELECT * FROM POST where POST_ID='admin';
+  
+  	delete from FOLLOW  where FOLLOW_I='1' and FOLLOW_Y='admin';
+    
+    SELECT * FROM POST_LIKE;
